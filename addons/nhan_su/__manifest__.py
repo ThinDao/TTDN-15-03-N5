@@ -26,6 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/nhan_vien.xml',
+        'views/lich_su_lam_viec.xml',
         'views/chuc_vu.xml',
         'views/phong_ban.xml',
         'views/menu.xml',

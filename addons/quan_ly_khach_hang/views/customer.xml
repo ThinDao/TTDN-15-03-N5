@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_customer_form" model="ir.ui.view">
+            <field name="name">customer</field>
+            <field name="model">customer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px; font-weight: bold; margin-bottom: 20px;">Thông tin khách hàng</div>
+                        <group col="2" string="Thông tin chung">
+                            <field name="customer_id"/>
+                            <field name="customer_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+                            <field name="age" readonly="1"/>
+                            <field name="customer_type"/>
+                            <field name="company_name" attrs="{'invisible': [('customer_type', '!=', 'company')]}"/>
+                            <field name="tax_code" attrs="{'invisible': [('customer_type', '!=', 'company')]}"/>
+                        </group>
+                        <!--<group col="1" string="Địa chỉ và ghi chú">
+                            <field name="address" widget="textarea"/>
+                            <field name="notes" widget="textarea"/>
+                        </group>
+                        <notebook>
+                            <page string="Đơn hàng">
+                                <field name="sale_order_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="date_order"/>
+                                        <field name="amount_total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Tương tác">
+                                <field name="interaction_ids">
+                                    <tree>
+                                        <field name="interaction_type"/>
+                                        <field name="date"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_customer_tree" model="ir.ui.view">
+            <field name="name">customer</field>
+            <field name="model">customer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="customer_id"/>
+                    <field name="customer_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="customer_type"/>
+                    <field name="company_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="customer_search" model="ir.ui.view">
+            <field name="name">customer</field>
+            <field name="model">customer</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="customer_id"/>
+                    <field name="customer_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="customer_type"/>
+                    <filter string="Khách hàng cá nhân" name="individual_customers" domain="[('customer_type', '=', 'individual')]"/>
+                    <filter string="Khách hàng công ty" name="company_customers" domain="[('customer_type', '=', 'company')]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Loại khách hàng" name="group_by_customer_type" context="{'group_by': 'customer_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_customer" model="ir.actions.act_window">
+            <field name="name">Khách hàng</field>
+            <field name="res_model">customer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="customer_search"/>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_customer_root" name="Quản lý khách hàng"/>
+        <menuitem id="menu_customer" name="Khách hàng" parent="menu_customer_root" action="action_customer" sequence="10"/>
+    </data>
+</odoo>

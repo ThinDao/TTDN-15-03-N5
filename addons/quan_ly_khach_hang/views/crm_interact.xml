@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_crm_interact_form" model="ir.ui.view">
+            <field name="name">crm_interact</field>
+            <field name="model">crm_interact</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Tương tác</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="crm_interact_id"/>
+                            <field name="crm_interact_name"/>
+                            <field name="customer_id"/>
+                            <field name="interaction_type"/>
+                            <field name="date"/>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_crm_interact_tree" model="ir.ui.view">
+            <field name="name">crm_interact</field>
+            <field name="model">crm_interact</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="crm_interact_id"/>
+                    <field name="crm_interact_name"/>
+                    <field name="customer_id"/>
+                    <field name="interaction_type"/>
+                    <field name="date"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="crm_interact_search">
+            <field name="model">crm_interact</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="crm_interact_id"/>
+                    <field name="crm_interact_name"/>
+                    <field name="customer_id"/>
+                    <field name="interaction_type"/>
+                    <field name="date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_crm_interact" model="ir.actions.act_window">
+            <field name="name">Tương tác</field>
+            <field name="res_model">crm_interact</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="crm_interact_search"/>
+        </record>
+    </data>
+</odoo>

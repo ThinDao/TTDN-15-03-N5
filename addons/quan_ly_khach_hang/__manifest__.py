@@ -25,7 +25,15 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/khach_hang.xml',
+        'views/customer.xml',
+        'views/crm_lead.xml',
+        'views/crm_interact.xml',
+        'views/contract.xml',
+        'views/sale_order.xml',
+        'views/note.xml',
+        'views/feedback.xml',
+        'views/project_task.xml',
+        'views/marketing_campaign.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
