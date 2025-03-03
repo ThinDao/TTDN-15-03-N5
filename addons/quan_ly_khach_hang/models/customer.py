@@ -27,8 +27,13 @@ class Customer(models.Model):
     notes = fields.Text("Ghi chú")
 
     # Trường liên kết với các model khác
-    #sale_order_ids = fields.One2many('sale.order', 'customer_id', string="Đơn hàng")
-    #interaction_ids = fields.One2many('crm.interaction', 'customer_id', string="Tương tác")
+    sale_order_ids = fields.One2many('sale_order', inverse_name='customer_id', string="Đơn hàng")
+    interact_ids = fields.One2many('crm_interact', inverse_name='customer_id', string="Tương tác")
+    contract_ids = fields.One2many('contract', inverse_name='customer_id', string="Hợp đồng")
+    lead_ids = fields.One2many('crm_lead', inverse_name='customer_id', string="Cơ hội")
+    feedback_ids = fields.One2many('feedback', inverse_name='customer_id', string="Phản hồi")
+    task_ids = fields.One2many('project_task', inverse_name='customer_id', string="Nhiệm vụ dự án")
+    note_ids = fields.One2many('note', inverse_name='customer_id', string="Ghi chú")
 
     # Trường tính toán (computed field)
     @api.depends('date_of_birth')
