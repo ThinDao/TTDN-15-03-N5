@@ -12,6 +12,7 @@
                             <field name="feedback_id"/>
                             <field name="feedback_name"/>
                             <field name="customer_id"/>
+                            <field name="employee_id"/>
                             <field name="feedback"/>
                             <field name="feedback_date"/>
                             <field name="rating"/>
@@ -29,6 +30,7 @@
                     <field name="feedback_id"/>
                     <field name="feedback_name"/>
                     <field name="customer_id"/>
+                    <field name="employee_id"/>
                     <field name="feedback"/>
                     <field name="feedback_date"/>
                     <field name="rating"/>
@@ -42,6 +44,7 @@
                 <search>
                     <field name="feedback_id"/>
                     <field name="feedback_name"/>
+                    <field name="employee_id"/>
                     <field name="customer_id"/>
                     <field name="feedback"/>
                     <field name="feedback_date"/>

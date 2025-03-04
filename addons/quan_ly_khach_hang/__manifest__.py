@@ -26,6 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/customer.xml',
+        'views/employee.xml',
         'views/crm_lead.xml',
         'views/crm_interact.xml',
         'views/contract.xml',

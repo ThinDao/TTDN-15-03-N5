@@ -16,6 +16,7 @@ class Feedback(models.Model):
         ('4', '4 sao'),
         ('5', '5 sao')
     ], string="Đánh giá", required=True)
+    employee_id = fields.Many2one('employee', string="Nhân viên", ondelete='set null')
 
     # Đặt tên hiển thị cho bản ghi
     def name_get(self):

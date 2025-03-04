@@ -9,7 +9,7 @@
                 <form>
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px; font-weight: bold; margin-bottom: 20px;">Thông tin khách hàng</div>
-                        <group col="2" string="Thông tin chung">
+                        <group col="4" string="Thông tin chung">
                             <field name="customer_id"/>
                             <field name="customer_name"/>
                             <field name="email"/>
@@ -17,9 +17,19 @@
                             <field name="gender"/>
                             <field name="date_of_birth"/>
                             <field name="age" readonly="1"/>
+                            <field name="address"/>
+                            <field name="income_level"/>
                             <field name="customer_type"/>
                             <field name="company_name" attrs="{'invisible': [('customer_type', '!=', 'company')]}"/>
                             <field name="tax_code" attrs="{'invisible': [('customer_type', '!=', 'company')]}"/>
+                        </group>
+                        <group col="2" string="Ảnh">
+                            <field name="image" widget="image"/>
+                        </group>
+                        <group col="4" string="Thống kê">
+                            <field name="total_contracts" readonly="1"/>
+                            <field name="total_interactions" readonly="1"/>
+                            <field name="total_sale_orders" readonly="1"/>
                         </group>
                         <notebook>
                             <page string="Hợp đồng">
@@ -37,7 +47,7 @@
                             <page string="Ghi chú">
                                 <field name="note_ids"/>
                             </page>
-                            <page string="Đơn hàng">
+                            <page string="Lịch sử giao dịch">
                                 <field name="sale_order_ids"/>
                             </page>
                             <page string="Tương tác">
@@ -59,9 +69,27 @@
                     <field name="customer_name"/>
                     <field name="email"/>
                     <field name="phone"/>
+                    <field name="address"/>
                     <field name="customer_type"/>
+                    <field name="income_level"/>
                     <field name="company_name"/>
                 </tree>
+            </field>
+        </record>
+
+        <!-- Graph View -->
+        <record id="view_customer_graph" model="ir.ui.view">
+            <field name="name">customer.graph</field>
+            <field name="model">customer</field>
+            <field name="arch" type="xml">
+                <graph string="Thống kê khách hàng">
+                    <!-- Trường phân nhóm (group_by) -->
+                    <field name="customer_type" type="row"/> <!-- Phân nhóm theo loại khách hàng -->
+                    <field name="income_level" type="row"/> <!-- Phân nhóm theo mức thu nhập -->
+                    
+                    <!-- Trường đo lường (measure) -->
+                    <field name="id" type="measure"/> <!-- Đếm số lượng khách hàng -->
+                </graph>
             </field>
         </record>
 
@@ -75,12 +103,18 @@
                     <field name="customer_name"/>
                     <field name="email"/>
                     <field name="phone"/>
+                    <field name="address"/>
                     <field name="customer_type"/>
+                    <field name="income_level"/>
                     <filter string="Khách hàng cá nhân" name="individual_customers" domain="[('customer_type', '=', 'individual')]"/>
                     <filter string="Khách hàng công ty" name="company_customers" domain="[('customer_type', '=', 'company')]"/>
                     <group expand="1" string="Group By">
                         <filter string="Loại khách hàng" name="group_by_customer_type" context="{'group_by': 'customer_type'}"/>
                     </group>
+                    <searchpanel>
+                        <field name="customer_type" string="Loại khách hàng" select="multi"/>
+                        <field name="income_level" string="Mức thu nhập" select="multi"/>
+                    </searchpanel>
                 </search>
             </field>
         </record>
@@ -89,7 +123,7 @@
         <record id="action_customer" model="ir.actions.act_window">
             <field name="name">Khách hàng</field>
             <field name="res_model">customer</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,graph</field>
             <field name="search_view_id" ref="customer_search"/>
         </record>
 

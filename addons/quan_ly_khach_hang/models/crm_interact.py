@@ -14,6 +14,7 @@ class CrmInteract(models.Model):
     ], string="Loại tương tác", required=True)
     date = fields.Datetime("Ngày tương tác", required=True)
     note = fields.Text("Ghi chú về tương tác")
+    employee_id = fields.Many2one('employee', string="Nhân viên", ondelete='set null')
 
     # Đặt tên hiển thị cho bản ghi
     def name_get(self):

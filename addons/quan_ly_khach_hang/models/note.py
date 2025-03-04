@@ -9,6 +9,7 @@ class Note(models.Model):
     customer_id = fields.Many2one('customer', string="Khách hàng", required=True, ondelete='cascade')
     note = fields.Text("Nội dung ghi chú", required=True)
     date = fields.Datetime("Ngày tạo ghi chú", required=True)
+    employee_id = fields.Many2one('employee', string="Nhân viên", ondelete='set null')
 
     # Đặt tên hiển thị cho bản ghi
     def name_get(self):

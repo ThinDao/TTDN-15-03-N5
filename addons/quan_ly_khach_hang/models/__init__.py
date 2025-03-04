@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from . import customer
+from . import employee
 from . import crm_lead
 from . import crm_stage
 from . import crm_interact
