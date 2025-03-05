@@ -9,7 +9,7 @@ class CrmLead(models.Model):
     stage_id = fields.Many2one('crm_stage', string="Giai đoạn")
     customer_id = fields.Many2one('customer', string="Khách hàng")
     probability = fields.Float("Xác suất thành công (%)", compute='_compute_probability', store=True)
-    expected_revenue = fields.Integer("Doanh thu dự kiến")
+    expected_revenue = fields.Float("Doanh thu dự kiến")
 
     @api.depends('stage_id')
     def _compute_probability(self):
