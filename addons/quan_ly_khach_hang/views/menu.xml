@@ -4,18 +4,12 @@
         <menuitem
             id="menu_root"
             name="QLKH"
-            sequence="0"/>
-
-        <menuitem name="Nhân viên" 
-            id="menu_employee" 
-            parent="menu_root" 
-            sequence="1"
-            action="action_employee"
-        />  
+            sequence="0"
+        />
         <menuitem name="Khách hàng" 
             id="menu_customer" 
             parent="menu_root" 
-            sequence="2"
+            sequence="1"
             action="action_customer"
         />
         <menuitem name="Cơ hội" 

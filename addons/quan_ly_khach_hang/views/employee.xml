@@ -77,9 +77,5 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="employee_search"/>
         </record>
-
-        <!-- Menu -->
-        <menuitem id="menu_employee_root" name="Quản lý nhân viên"/>
-        <menuitem id="menu_employee" name="Nhân viên" parent="menu_employee_root" action="action_employee" sequence="10"/>
     </data>
 </odoo>
